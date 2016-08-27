@@ -55,7 +55,6 @@ TARGET_OS = dos
 
 BUILD_ROOT=$+$(%__CWD__)
 #EXMMTESTDIR=16$(DIRSEP)exmmtest$(DIRSEP)
-PDIR=..$(DIRSEP)
 SRC=src$(DIRSEP)
 DATADIR=data$(DIRSEP)
 SPRI=$(DATADIR)$(DIRSEP)spri$(DIRSEP)
@@ -63,8 +62,8 @@ SRCLIB=$(SRC)lib$(DIRSEP)
 JSMNLIB=$(SRCLIB)jsmn$(DIRSEP)
 NYANLIB=$(SRCLIB)nyan$(DIRSEP)
 #EXMMLIB=$(SRCLIB)exmm$(DIRSEP)
-MODEXLIB=$(SRCLIB)modex16$(DIRSEP)
-MODEXLIB_=$(SRCLIB)modex$(DIRSEP)
+MODEXLIB16=$(SRCLIB)modex16$(DIRSEP)
+MODEXLIB=$(SRCLIB)modex$(DIRSEP)
 VGMSNDLIB=$(SRCLIB)vgmsnd$(DIRSEP)
 DOSLIB=$(SRCLIB)doslib$(DIRSEP)
 DOSLIBDIR=$(SRCLIB)doslib
@@ -287,10 +286,10 @@ bakapee.$(OBJ): $(SRCLIB)bakapee.h $(SRCLIB)bakapee.c .symbolic
 	#*wcl $(FLAGS) -c $(SRCLIB)bakapee.c
 
 16render.$(OBJ): $(SRCLIB)16render.h $(SRCLIB)16render.c .symbolic
-	#*wcl $(FLAGS) -c $(MODEXLIB)16render.c
+	#*wcl $(FLAGS) -c $(SRCLIB)16render.c
 
-##16planar.$(OBJ): $(MODEXLIB)16planar.h $(MODEXLIB)16planar.c
-##	*wcl $(FLAGS) -c $(MODEXLIB)16planar.c
+##16planar.$(OBJ): $(MODEXLIB16)16planar.h $(MODEXLIB16)16planar.c
+##	*wcl $(FLAGS) -c $(MODEXLIB16)16planar.c
 
 16_vrs.$(OBJ): $(SRCLIB)16_vrs.h $(SRCLIB)16_vrs.c $(DOSLIBLIBS) .symbolic
 	#*wcl $(FLAGS) -c $(SRCLIB)16_vrs.c $(DOSLIBLIBS)
@@ -362,10 +361,10 @@ wcpu.$(OBJ): $(WCPULIB)wcpu.h $(WCPULIB)wcpu.c .symbolic
 #memory.$(OBJ): $(EXMMLIB)memory.h $(EXMMLIB)memory.c
 #	*wcl $(FLAGS) $(MFLAGS) -c $(EXMMLIB)memory.c
 
-c_utils.$(OBJ): $(MODEXLIB_)c_utils.asm
-	*wcl -c $(AFLAGS) $(MODEXLIB_)c_utils.asm
-modex.$(OBJ): $(MODEXLIB_)modex.asm
-	*wcl -c $(AFLAGS) $(MODEXLIB_)modex.asm
+c_utils.$(OBJ): $(MODEXLIB)c_utils.asm
+	*wcl -c $(AFLAGS) $(MODEXLIB)c_utils.asm
+modex.$(OBJ): $(MODEXLIB)modex.asm
+	*wcl -c $(AFLAGS) $(MODEXLIB)modex.asm
 
 #
 #other~
